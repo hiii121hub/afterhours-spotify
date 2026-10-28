@@ -1,66 +1,45 @@
 <!doctype html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-		/>
-		<title>Scramjet</title>
-
-		<link rel="shortcut icon" content="favicon.webp" />
-	
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Afterhours — Spotify</title>
+		<link rel="stylesheet" href="index.css" />
 		<script src="/scram/scramjet.all.js"></script>
 		<script src="/baremux/index.js"></script>
-		
-		<link rel="stylesheet" href="index.css" />
 		<script src="register-sw.js" defer></script>
-		<script src="search.js" defer></script>
 		<script src="index.js" defer></script>
 	</head>
-
 	<body>
-		<div title="Scramjet Logo" class="flex-center logo-wrapper header-center">
-			<img class="logo" src="sj.png" alt="Scramjet" />
-			<h1>Scramjet | MW</h1>
+		<header>
+			<a class="brand" href="/">afterhours<span>.</span></a>
+			<nav aria-label="Services">
+				<button data-service="spotify" class="active">Spotify</button
+				><button data-service="crunchyroll">Crunchyroll</button>
+			</nav>
+			<button id="reload" aria-label="Reload service">↻</button>
+		</header>
+		<div class="notice">
+			<span id="service-note"
+				>Spotify’s web player. Sign in with your Spotify account.</span
+			><a
+				href="https://github.com/hiii121hub/afterhours-spotify"
+				target="_blank"
+				rel="noopener"
+				>Source</a
+			><a href="credits.html" target="_blank" rel="noopener">Credits</a>
 		</div>
-		<div class="flex-center desc left-margin">
-			<p>
-				Scramjet is an experimental interception based web proxy designed to
-				evade internet censorship, bypass arbitrary web browser restrictions and
-				innovate web proxy technologies.
-			</p>
-		</div>
-
-		<form id="sj-form" class="flex-center">
-			<input
-				id="sj-search-engine"
-				value="https://www.google.com/search?q=%s"
-				type="hidden"
-			/>
-			<input id="sj-address" type="text" placeholder="Search the web freely" />
-		</form>
-		<div class="desc left-margin">
-			<p id="sj-error"></p>
-			<pre id="sj-error-code"></pre>
-		</div>
-		<footer>
-			<div>
-				<a
-					title="The Mercury Workshop GitHub organization"
-					href="https://github.com/MercuryWorkshop"
-					>Mercury Workshop</a
-				>
-				<a
-					title="The example demo app for Scramjet"
-					href="https://github.com/MercuryWorkshop/Scramjet-Demo"
-					>GitHub</a
-				>
-				<a title="License information" href="credits.html">Credits</a>
+		<main id="stage">
+			<div class="start">
+				<span class="tag">WEB PLAYER</span>
+				<h1>Spotify, in the page.</h1>
+				<p>
+					Loads Spotify’s own web player through Scramjet.<br />A Spotify
+					account is still required to play full songs.
+				</p>
+				<button id="start">Load Spotify</button>
+				<p id="status" role="status"></p>
 			</div>
-			<div>
-				<span>Scramjet &copy; MW 2025</span>
-			</div>
-		</footer>
+		</main>
 	</body>
 </html>

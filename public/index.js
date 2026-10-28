@@ -1,27 +1,5 @@
 "use strict";
-/**
- * @type {HTMLFormElement}
- */
-const form = document.getElementById("sj-form");
-/**
- * @type {HTMLInputElement}
- */
-const address = document.getElementById("sj-address");
-/**
- * @type {HTMLInputElement}
- */
-const searchEngine = document.getElementById("sj-search-engine");
-/**
- * @type {HTMLParagraphElement}
- */
-const error = document.getElementById("sj-error");
-/**
- * @type {HTMLPreElement}
- */
-const errorCode = document.getElementById("sj-error-code");
-
 const { ScramjetController } = $scramjetLoadController();
-
 const scramjet = new ScramjetController({
 	files: {
 		wasm: "/scram/scramjet.wasm.wasm",
@@ -29,36 +7,95 @@ const scramjet = new ScramjetController({
 		sync: "/scram/scramjet.sync.js",
 	},
 });
-
-scramjet.init();
-
 const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
-
-form.addEventListener("submit", async (event) => {
-	event.preventDefault();
-
-	try {
+const services = {
+	spotify: {
+		url: "https://open.spotify.com/",
+		note: "Spotify’s web player. Sign in with your Spotify account.",
+	},
+	crunchyroll: {
+		url: "/watch.html",
+		note: "Crunchyroll shows and official trailers. Full episodes open on Crunchyroll.",
+	},
+};
+const frames = new Map();
+let active = "spotify",
+	started = false,
+	initializing;
+async function init() {
+	if (initializing) return initializing;
+	initializing = (async () => {
+		await scramjet.init();
 		await registerSW();
-	} catch (err) {
-		error.textContent = "Failed to register service worker.";
-		errorCode.textContent = err.toString();
-		throw err;
-	}
-
-	const url = search(address.value, searchEngine.value);
-
-	let wispUrl =
-		(location.protocol === "https:" ? "wss" : "ws") +
-		"://" +
-		location.host +
-		"/wisp/";
-	if ((await connection.getTransport()) !== "/libcurl/index.mjs") {
+		await navigator.serviceWorker.ready;
 		await connection.setTransport("/libcurl/index.mjs", [
-			{ websocket: wispUrl },
+			{
+				websocket:
+					(location.protocol === "https:" ? "wss:" : "ws:") +
+					"//" +
+					location.host +
+					"/wisp/",
+			},
 		]);
+	})();
+	return initializing;
+}
+async function show(service) {
+	if (!services[service]) return;
+	active = service;
+	document
+		.querySelectorAll("[data-service]")
+		.forEach((b) =>
+			b.classList.toggle("active", b.dataset.service === service)
+		);
+	document.querySelector("#service-note").textContent = services[service].note;
+	if (!started) return;
+	try {
+		await init();
+		let frame = frames.get(service);
+		if (!frame) {
+			if (service === "spotify") {
+				frame = scramjet.createFrame();
+			} else {
+				const iframe = document.createElement("iframe");
+				frame = {
+					frame: iframe,
+					go: (url) => {
+						iframe.src = url;
+					},
+				};
+			}
+			frame.frame.title =
+				service === "spotify"
+					? "Spotify web player"
+					: "Crunchyroll shows and trailers";
+			frame.frame.allow =
+				"autoplay; encrypted-media; fullscreen; picture-in-picture";
+			document.querySelector("#stage").append(frame.frame);
+			frames.set(service, frame);
+			frame.go(services[service].url);
+		}
+		for (const [key, item] of frames) item.frame.hidden = key !== active;
+		document.querySelector(".start").hidden = true;
+	} catch (error) {
+		document.querySelector("#status").textContent =
+			"Could not load the browser service: " + error.message;
+		document.querySelector(".start").hidden = false;
 	}
-	const frame = scramjet.createFrame();
-	frame.frame.id = "sj-frame";
-	document.body.appendChild(frame.frame);
-	frame.go(url);
-});
+}
+document.querySelector("#start").onclick = () => {
+	started = true;
+	document.querySelector("#status").textContent = "Loading…";
+	show(active);
+};
+document
+	.querySelectorAll("[data-service]")
+	.forEach((b) => (b.onclick = () => show(b.dataset.service)));
+document.querySelector("#reload").onclick = () => {
+	const f = frames.get(active);
+	if (f) f.go(services[active].url);
+	else {
+		started = true;
+		show(active);
+	}
+};

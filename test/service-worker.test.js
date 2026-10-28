@@ -66,12 +66,11 @@ test("sandboxed proxy iframe retains isolation policy without an incompatible op
 	assert.equal(response.status, 202);
 	assert.equal(await response.text(), "document body");
 });
-test("direct proxy links initialize in the site wrapper", async () => {
+test("top-level proxy responses keep opener isolation", async () => {
 	const response = await request("document");
-	assert.equal(response.status, 302);
 	assert.equal(
-		response.headers.get("Location"),
-		"https://example.test/?service=spotify"
+		response.headers.get("Cross-Origin-Opener-Policy"),
+		"same-origin"
 	);
 });
 

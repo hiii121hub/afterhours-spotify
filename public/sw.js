@@ -6,12 +6,6 @@ const scramjet = new ScramjetServiceWorker();
 async function handleRequest(event) {
 	await scramjet.loadConfig();
 	if (scramjet.route(event)) {
-		if (event.request.destination === "document") {
-			return Response.redirect(
-				new URL("/?service=spotify", event.request.url).href,
-				302
-			);
-		}
 		const response = await scramjet.fetch(event);
 		// Scramjet adds COOP to every proxied response when the outer app is
 		// isolated. COOP on a sandboxed iframe navigation becomes a browser

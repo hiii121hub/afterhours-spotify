@@ -66,6 +66,10 @@ const fastify = Fastify({
 });
 
 fastify.get("/health", async () => ({ status: "ok" }));
+// Without a controlling service worker, proxy URLs cannot load on their own.
+fastify.get("/scramjet/*", async (_request, reply) =>
+	reply.redirect("/?service=spotify")
+);
 
 fastify.register(fastifyStatic, {
 	root: publicPath,

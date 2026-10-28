@@ -38,6 +38,12 @@ test(
 			status: "ok",
 		});
 		assert.equal((await fetch(base)).status, 200);
+		const direct = await fetch(
+			base + "/scramjet/https%3A%2F%2Fopen.spotify.com%2F",
+			{ redirect: "manual" }
+		);
+		assert.equal(direct.status, 302);
+		assert.equal(direct.headers.get("location"), "/?service=spotify");
 		const foreign = new WebSocket(base.replace("http:", "ws:") + "/wisp/", {
 			origin: "https://other.example",
 		});

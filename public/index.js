@@ -108,3 +108,8 @@ document.querySelector("#reload").onclick = () => {
 		show(active);
 	}
 };
+
+// A directly opened proxy URL must initialize its transport in the site first.
+if (new URLSearchParams(location.search).get("service") === "spotify") {
+	document.querySelector("#start").click();
+}

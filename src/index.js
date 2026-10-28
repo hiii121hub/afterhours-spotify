@@ -32,7 +32,6 @@ Object.assign(wisp.options, {
 	dns_method: resolveDestination,
 });
 const connections = new Set();
-const perAddress = new Map();
 
 const fastify = Fastify({
 	serverFactory: (handler) => {
@@ -47,24 +46,19 @@ const fastify = Fastify({
 			.on("upgrade", (req, socket, head) => {
 				const publicOrigin =
 					process.env.RENDER_EXTERNAL_URL || `http://${req.headers.host}`;
-				const address = req.socket.remoteAddress;
 				if (!isAllowedUpgrade(req, publicOrigin)) {
 					socket.end("HTTP/1.1 403 Forbidden\r\nConnection: close\r\n\r\n");
 					return;
 				}
-				if (connections.size >= 64 || (perAddress.get(address) || 0) >= 8) {
+				if (connections.size >= 64) {
 					socket.end(
 						"HTTP/1.1 429 Too Many Requests\r\nConnection: close\r\n\r\n"
 					);
 					return;
 				}
 				connections.add(socket);
-				perAddress.set(address, (perAddress.get(address) || 0) + 1);
 				socket.on("close", () => {
 					connections.delete(socket);
-					const remaining = (perAddress.get(address) || 1) - 1;
-					if (remaining) perAddress.set(address, remaining);
-					else perAddress.delete(address);
 				});
 				wisp.routeRequest(req, socket, head);
 			});

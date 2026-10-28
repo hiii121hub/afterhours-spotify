@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="/stickman-hook/">
+  <title>Stickman Hook</title>
+  <style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#101210;color:#f0f2e9;font-family:Arial,sans-serif}canvas{width:100%;height:100%}#service-status{position:fixed;inset:0;display:grid;place-content:center;padding:24px;text-align:center;background:#101210;z-index:1000;font-size:15px;line-height:1.6}</style>
+  <!-- Load the provider's real SDK, never the mirrored poki3/poki2 replacements. -->
+  <script crossorigin="anonymous" src="https://game-cdn.poki.com/scripts/v2/poki-sdk.js"></script>
+</head>
+<body>
+  <div id="service-status" role="status">Connecting game services…</div>
+  <script>
+  (async () => {
+    const status = document.querySelector('#service-status');
+    try {
+      if (!window.PokiSDK) throw new Error('Game services could not load.');
+      // The original game bundle performs and awaits PokiSDK.init itself.
+      // Preserve that authored flow and the real ad callbacks; do not initialize twice.
+      const bundle = document.createElement('script');
+      bundle.crossOrigin = 'anonymous';
+      bundle.src = 'bundle.js';
+      bundle.onload = () => status.remove();
+      bundle.onerror = () => { status.textContent = 'The game files could not load. Please try again later.'; };
+      document.body.append(bundle);
+    } catch (error) {
+      status.textContent = 'Game services did not authorize this session. This game cannot start here yet.';
+      console.error('Stickman Hook provider initialization failed', error);
+    }
+  })();
+  </script>
+</body>
+</html>

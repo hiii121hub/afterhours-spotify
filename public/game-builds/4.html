@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <base href="/gladihoppers/">
+  <title>Gladihoppers</title>
+  <style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#101210;color:#f0f2e9;font-family:Arial,sans-serif}#game{position:absolute!important;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100vw,177.7778vh);height:min(100vh,56.25vw)}#game canvas{width:100%;height:100%}#service-status{position:fixed;inset:0;display:grid;place-content:center;padding:24px;text-align:center;background:#101210;z-index:1000;font-size:15px;line-height:1.6}</style>
+  <!-- The mirrored patch/js/poki-sdk.js changes ads and origin checks. It is not used. -->
+  <script crossorigin="anonymous" src="https://game-cdn.poki.com/scripts/v2/poki-sdk.js"></script>
+</head>
+<body>
+  <div id="game"></div>
+  <div id="service-status" role="status">Connecting game services…</div>
+  <script>
+  (async () => {
+    const status = document.querySelector('#service-status');
+    const assets = new URL('Build/', document.baseURI);
+    const loadScript = src => new Promise((resolve,reject) => {
+      const script = document.createElement('script');
+      script.crossOrigin = 'anonymous';
+      script.src = src;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error('A required game loader could not load.'));
+      document.body.append(script);
+    });
+    const fail = error => {
+      status.style.display = 'grid';
+      status.textContent = 'The game could not start. Its provider services or game files are unavailable.';
+      console.error('Gladihoppers could not start', error);
+    };
+    try {
+      if (!window.PokiSDK) throw new Error('Game services could not load.');
+      // Do not start the Unity build if the real provider rejects this session.
+      await PokiSDK.init();
+      PokiSDK.gameLoadingStart();
+      status.textContent = 'Loading Gladihoppers…';
+      window.config = {cachedDecompressedFileSizes:{
+        'Gladihoppers.data.unityweb':17409938,
+        'Gladihoppers.wasm.code.unityweb':6410659,
+        'Gladihoppers.wasm.framework.unityweb':91463
+      }};
+      // This version-specific Unity loader was inspected for SDK/origin/ad substitutions.
+      // Its extra progress-size calculation is retained; no mirrored Poki bootstrap is used.
+      await loadScript('patch/js/UnityLoader.2019.2.js');
+      let bridge;
+      window.initPokiBridge = name => {
+        bridge = name;
+        window.unityGame.SendMessage(name,'ready');
+      };
+      window.commercialBreak = async () => {
+        try {
+          await PokiSDK.commercialBreak();
+          window.unityGame.SendMessage(bridge,'commercialBreakCompleted');
+        } catch (error) { fail(error); }
+      };
+      window.rewardedBreak = async () => {
+        try {
+          const granted = await PokiSDK.rewardedBreak();
+          window.unityGame.SendMessage(bridge,'rewardedBreakCompleted',String(granted === true));
+        } catch (error) { fail(error); }
+      };
+      window.unityGame = UnityLoader.instantiate('game',new URL('Gladihoppers.json',assets).href,{
+        onProgress: (_instance,progress) => {
+          status.textContent = 'Loading Gladihoppers… ' + Math.round(progress*100) + '%';
+          PokiSDK.gameLoadingProgress({percentageDone:progress*100});
+          if (progress === 1) status.style.display = 'none';
+        },
+        Module:{onRuntimeInitialized:() => {PokiSDK.gameLoadingFinished(); status.style.display = 'none';}},
+        onerror:fail
+      });
+    } catch (error) { fail(error); }
+  })();
+  </script>
+<script src="/touch-controls.js"></script></body>
+</html>

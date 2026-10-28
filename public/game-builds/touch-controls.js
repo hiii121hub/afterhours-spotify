@@ -1,10 +1,91 @@
 /* On-screen keys for the original keyboard games. */
 (() => {
- const id=Number(location.pathname.match(/\/(\d+)\.html$/)?.[1]);
- const keys=id===4?[["A","a",65],["D","d",68],["W","w",87],["S","s",83],["Stance"," ",32],["←","ArrowLeft",37],["↑","ArrowUp",38],["↓","ArrowDown",40],["→","ArrowRight",39]]:[["←","ArrowLeft",37],["↓","ArrowDown",40],["↑","ArrowUp",38],["→","ArrowRight",39]];
- const style=document.createElement('style');style.textContent='.touch-keys{display:none;position:fixed;bottom:max(8px,env(safe-area-inset-bottom));left:8px;right:8px;z-index:999;justify-content:space-between;gap:5px;pointer-events:none}.touch-keys button{pointer-events:auto;touch-action:none;user-select:none;background:#151719cc;color:white;border:1px solid #ffffff88;border-radius:9px;min-width:38px;min-height:44px;font:700 18px system-ui}.touch-keys button:active{background:#636d44}@media(max-width:700px),(pointer:coarse){.touch-keys{display:flex}}';document.head.append(style);
- const controls=document.createElement('nav');controls.className='touch-keys';if(id===4){controls.style.flexWrap='wrap';controls.style.justifyContent='center';}controls.setAttribute('aria-label','Game controls');const held=new Map();
- function key(type,key,code){document.dispatchEvent(new KeyboardEvent(type,{key,code:key===' '?'Space':key.length===1?'Key'+key.toUpperCase():key,keyCode:code,which:code,bubbles:true,cancelable:true}));}
- for(const [label,value,code]of keys){const button=document.createElement('button');button.textContent=label;button.setAttribute('aria-label',id===4&&value.startsWith('Arrow')?'Attack '+value.slice(5).toLowerCase():label==='↑'?'Jump':label==='←'?'Move left':label==='→'?'Move right':label==='↓'?'Crouch':label);button.onpointerdown=e=>{e.preventDefault();button.setPointerCapture(e.pointerId);held.set(button,[value,code]);key('keydown',value,code)};const release=()=>{if(held.has(button)){key('keyup',value,code);held.delete(button)}};button.onpointerup=release;button.onpointercancel=release;button.onlostpointercapture=release;controls.append(button)}
- addEventListener('blur',()=>{for(const [value,code]of held.values())key('keyup',value,code);held.clear()});document.body.append(controls);
+	const id = Number(location.pathname.match(/\/(\d+)\.html$/)?.[1]);
+	const keys =
+		id === 4
+			? [
+					["A", "a", 65],
+					["D", "d", 68],
+					["W", "w", 87],
+					["S", "s", 83],
+					["Stance", " ", 32],
+					["←", "ArrowLeft", 37],
+					["↑", "ArrowUp", 38],
+					["↓", "ArrowDown", 40],
+					["→", "ArrowRight", 39],
+				]
+			: [
+					["←", "ArrowLeft", 37],
+					["↓", "ArrowDown", 40],
+					["↑", "ArrowUp", 38],
+					["→", "ArrowRight", 39],
+				];
+	const style = document.createElement("style");
+	style.textContent =
+		".touch-keys{display:none;position:fixed;bottom:max(8px,env(safe-area-inset-bottom));left:8px;right:8px;z-index:999;justify-content:space-between;gap:5px;pointer-events:none}.touch-keys button{pointer-events:auto;touch-action:none;user-select:none;background:#151719cc;color:white;border:1px solid #ffffff88;border-radius:9px;min-width:38px;min-height:44px;font:700 18px system-ui}.touch-keys button:active{background:#636d44}@media(max-width:700px),(pointer:coarse){.touch-keys{display:flex}}";
+	document.head.append(style);
+	const controls = document.createElement("nav");
+	controls.className = "touch-keys";
+	if (id === 4) {
+		controls.style.flexWrap = "wrap";
+		controls.style.justifyContent = "center";
+	}
+	controls.setAttribute("aria-label", "Game controls");
+	const held = new Map();
+	function key(type, key, code) {
+		document.dispatchEvent(
+			new KeyboardEvent(type, {
+				key,
+				code:
+					key === " "
+						? "Space"
+						: key.length === 1
+							? "Key" + key.toUpperCase()
+							: key,
+				keyCode: code,
+				which: code,
+				bubbles: true,
+				cancelable: true,
+			})
+		);
+	}
+	for (const [label, value, code] of keys) {
+		const button = document.createElement("button");
+		button.textContent = label;
+		button.setAttribute(
+			"aria-label",
+			id === 4 && value.startsWith("Arrow")
+				? "Attack " + value.slice(5).toLowerCase()
+				: label === "↑"
+					? "Jump"
+					: label === "←"
+						? "Move left"
+						: label === "→"
+							? "Move right"
+							: label === "↓"
+								? "Crouch"
+								: label
+		);
+		button.onpointerdown = (e) => {
+			e.preventDefault();
+			button.setPointerCapture(e.pointerId);
+			held.set(button, [value, code]);
+			key("keydown", value, code);
+		};
+		const release = () => {
+			if (held.has(button)) {
+				key("keyup", value, code);
+				held.delete(button);
+			}
+		};
+		button.onpointerup = release;
+		button.onpointercancel = release;
+		button.onlostpointercapture = release;
+		controls.append(button);
+	}
+	addEventListener("blur", () => {
+		for (const [value, code] of held.values()) key("keyup", value, code);
+		held.clear();
+	});
+	document.body.append(controls);
 })();

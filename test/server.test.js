@@ -37,7 +37,11 @@ test(
 		assert.deepEqual(await (await fetch(base + "/health")).json(), {
 			status: "ok",
 		});
-		assert.equal((await fetch(base)).status, 200);
+		const homepage = await fetch(base);
+		assert.equal(homepage.status, 200);
+		assert.equal(homepage.headers.get("cross-origin-opener-policy"), "same-origin");
+		assert.equal(homepage.headers.get("cross-origin-embedder-policy"), "require-corp");
+		assert.equal((await fetch(base + "/game-builds/1.html")).status, 403);
 		const direct = await fetch(
 			base + "/scramjet/https%3A%2F%2Fopen.spotify.com%2F",
 			{ redirect: "manual" }

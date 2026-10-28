@@ -9,27 +9,32 @@
 	<body>
 		<main>
 			<p class="eyebrow">GAMES</p>
-			<h1>The game list.</h1>
-			<p class="intro">
-				Seven requested games. Hosting permission is still unverified, so none
-				are marked playable.
-			</p>
-			<div id="games" class="grid"></div>
+			<h1>Pick a game.</h1>
+			<p class="intro">Play here. Keyboard and touch support vary by game.</p>
+			<div id="games" class="grid" aria-live="polite"></div>
 			<details>
-				<summary>Why aren’t these playable yet?</summary>
-				<p>
-					The catalog, loaders, assets and covers were matched. The GN
-					repositories contain no license files. Public files alone do not
-					establish hosting permission. Original Sprunki’s creator project is
-					private.
-				</p>
-				<p>
-					Gameplay, controls, fullscreen and mobile support remain untested.
-					Game files and covers haven’t been copied or loaded.
-				</p>
-				<a href="game-audit.json" download>Download the dependency report</a>
+				<summary>Game test results</summary>
+				<p>Only games tested through actual gameplay are marked tested.</p>
+				<a href="game-audit.json" download>Download the game report</a>
 			</details>
 		</main>
+		<dialog id="game-dialog">
+			<section id="game-shell">
+				<div class="game-toolbar">
+					<div>
+						<h2 id="game-title"></h2>
+						<span id="game-controls"></span>
+					</div>
+					<div>
+						<button id="game-reload" class="quiet">Restart</button
+						><button id="game-fullscreen" class="quiet">Fullscreen</button
+						><button id="game-close" aria-label="Close game">Close</button>
+					</div>
+				</div>
+				<div id="game-frame"></div>
+				<p id="game-message" role="status"></p>
+			</section>
+		</dialog>
 		<script src="games.js"></script>
 	</body>
 </html>

@@ -7,7 +7,20 @@
     "author": "Dedra Games",
     "authorLink": "https://dedragames.com",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/1-fix2.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Completed level 1 and entered level 2.",
+    "controls": "Arrow movement and jump verified.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 layout and on-screen movement/jump verified. Physical touchscreen not tested.",
+    "primaryEvidence": "https://skymen75.itch.io/ovo",
+    "loaderSHA256": "2962de640d4a70df477fd195ab97e2f4e2f59ed831d486fd1c4b1dc2b41fc915",
+    "localLoader": "/game-builds/1.html",
+    "localCover": "/game-covers/1.png",
+    "note": "Arrow keys or on-screen buttons to move and jump.",
+    "launchUrl": "https://afterhours-games.onrender.com/1.html?v=20261028",
+    "sourceDependencies": [
       "href=\"https://cdn.jsdelivr.net/gh/Replku/Ovo@2b17271c24535b96a49c4d1b9f64cd998aa2d060/\"",
       "href=\"appmanifest.json\"",
       "href=\"animate.css\"",
@@ -29,17 +42,13 @@
       "src=\"howler.js\"",
       "src=\"c2runtime.js\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://cdn.jsdelivr.net/gh/Replku/Ovo@2b17271c24535b96a49c4d1b9f64cd998aa2d060/"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "No license in the GN HTML, assets or cover repository; publisher hosting permission not verified.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://skymen75.itch.io/ovo"
+    "externalDependencies": [
+      "Pinned Replku/Ovo assets on jsDelivr"
+    ],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   },
   {
     "id": 2,
@@ -49,7 +58,20 @@
     "author": "Dedra Games",
     "authorLink": "https://dedragames.com",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/2-fix3.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Visible player moves through the tutorial after a backdrop ordering repair.",
+    "controls": "Keyboard movement/jump and on-screen movement/jump verified.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 layout and on-screen controls verified. Physical touchscreen not tested.",
+    "primaryEvidence": "https://dedragames.com/games/ovo2/0.2alpha/",
+    "loaderSHA256": "68403255a363eaa0b256433702f356bc15a676762e7a6f44a5d870ae54f2559c",
+    "localLoader": "/game-builds/2.html",
+    "localCover": "/game-covers/2.png",
+    "note": "Arrow keys or on-screen buttons. Alpha build.",
+    "launchUrl": "https://afterhours-games.onrender.com/2.html?v=20261028",
+    "sourceDependencies": [
       "href=\"https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/\"",
       "href=\"https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/appmanifest.json\"",
       "href=\"icons/icon-128.png\"",
@@ -62,7 +84,7 @@
       "src=\"https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/scripts/main.js\"",
       "src=\"https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/scripts/register-sw.js\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/",
       "https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/appmanifest.json",
       "https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/icons/icon-256.png",
@@ -74,14 +96,8 @@
       "https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/scripts/main.js",
       "https://cdn.jsdelivr.net/gh/ov464534asa4rb/786132@main/scripts/register-sw.js"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "No license in the GN HTML, assets or cover repository; publisher hosting permission not verified.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://dedragames.com/games/ovo2/0.2alpha/"
+    "externalDependencies": [],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   },
   {
     "id": 3,
@@ -91,7 +107,20 @@
     "author": "Dedra Games",
     "authorLink": "https://dedragames.com",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/3-fix3.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Cleared the first level and reached the CLEAR screen.",
+    "controls": "Keyboard movement/jump and on-screen movement/jump verified.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 layout and on-screen movement/jump verified. Physical touchscreen not tested.",
+    "primaryEvidence": "https://dedragames.com/games/ovo3/",
+    "loaderSHA256": "20d307ad6fdf4d7c5cd3eda4e16774d846bf2255924ef5a318bc3dc175f6efe1",
+    "localLoader": "/game-builds/3.html",
+    "localCover": "/game-covers/3.png",
+    "note": "Arrow keys or on-screen buttons to move and jump.",
+    "launchUrl": "https://afterhours-games.onrender.com/3.html?v=20261028",
+    "sourceDependencies": [
       "href=\"https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/\"",
       "href=\"https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/appmanifest.json\"",
       "href=\"https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/icon-256.png\"",
@@ -110,7 +139,7 @@
       "src=\"https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/howler.js\"",
       "src=\"https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/c2runtime.js\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/",
       "https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/appmanifest.json",
       "https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/icon-256.png",
@@ -130,14 +159,10 @@
       "https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/c2runtime.js",
       "https://cdn.jsdelivr.net/gh/bubblfan/ovo-3-dimension@102179bf4242fd237c46c555ba154c2f325d351c/sw.js"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "No license in the GN HTML, assets or cover repository; publisher hosting permission not verified.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://dedragames.com/games/ovo3/"
+    "externalDependencies": [
+      "Official Poki SDK and advertising services"
+    ],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   },
   {
     "id": 4,
@@ -147,23 +172,32 @@
     "author": "Dreamon Studios",
     "authorLink": "https://dreamonstudios.itch.io/gladihoppers",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/4-fix3.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Completed movement and stance tutorial steps; registered hits on training dummy.",
+    "controls": "WASD, Space, arrow attacks and on-screen movement verified.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 fitted landscape canvas and on-screen movement verified; landscape recommended. Physical touchscreen not tested.",
+    "primaryEvidence": "https://dreamonstudios.itch.io/gladihoppers",
+    "loaderSHA256": "aa39a514acc6a3a7e9d4c1b70d769f5464fb7f895e940774ac00cfc6d90992fb",
+    "localLoader": "/game-builds/4.html",
+    "localCover": "/game-covers/4.png",
+    "note": "WASD to move, Space to change stance, arrow keys to attack.",
+    "launchUrl": "https://afterhours-games.onrender.com/4.html?v=20261028",
+    "sourceDependencies": [
       "href=\"https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/gladihoppper/\"",
       "src=\"https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/merge.js\"",
       "src=\"patch/js/poki-master-loader.js\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/gladihoppper/",
       "https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/merge.js"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "No license in the GN HTML, assets or cover repository; publisher hosting permission not verified.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://dreamonstudios.itch.io/gladihoppers"
+    "externalDependencies": [
+      "Official Poki SDK and advertising services"
+    ],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   },
   {
     "id": 5,
@@ -173,7 +207,20 @@
     "author": "Onionfist Studio",
     "authorLink": "https://onionfist.com",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/5-fix2.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Official creator embed loads maps, runs the Welcome Map, restarts after falling.",
+    "controls": "Map selection, restart and right-arrow steering verified inside iframe.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 menu/game layout verified. Keyboard steering required in this test; physical touch unverified. Physical touchscreen not tested.",
+    "primaryEvidence": "https://onionfist.com/terms_of_service/",
+    "loaderSHA256": "4e8548e0c22dc538068028d58eda48dc5c647141c5c5e2a48a9c67f31e567cb9",
+    "localLoader": "/game-builds/5.html",
+    "localCover": "/game-covers/5.png",
+    "note": "Left/right arrow keys to steer. Keyboard recommended.",
+    "launchUrl": "https://afterhours-games.onrender.com/5.html?v=20261028",
+    "sourceDependencies": [
       "src=\"https://www.googletagmanager.com/gtag/js?id=G-L7856P3VNT\"",
       "href=\"https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo/\"",
       "src=\"https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo@b950830c255518c930fbc2a0bd3182e7d4cc920c/libs/jquery-3.3.1.js\"",
@@ -271,7 +318,7 @@
       "src=\"https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo@b950830c255518c930fbc2a0bd3182e7d4cc920c/js/boot.js\"",
       "src=\"https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo@b950830c255518c930fbc2a0bd3182e7d4cc920c/js/testing_mode.js\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://www.googletagmanager.com/gtag/js?id=G-L7856P3VNT",
       "https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo/",
       "https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo@b950830c255518c930fbc2a0bd3182e7d4cc920c/libs/jquery-3.3.1.js",
@@ -337,14 +384,10 @@
       "https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo@b950830c255518c930fbc2a0bd3182e7d4cc920c/js/boot.js",
       "https://cdn.jsdelivr.net/gh/bubblfan/ice-dodo@b950830c255518c930fbc2a0bd3182e7d4cc920c/js/testing_mode.js"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "Onionfist terms require written approval to use their content outside their service. No such approval was found.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://onionfist.com/terms_of_service/"
+    "externalDependencies": [
+      "https://icedodo.io/ creator game and APIs"
+    ],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   },
   {
     "id": 9,
@@ -354,25 +397,32 @@
     "author": "NyankoBfLol",
     "authorLink": "https://www.cocrea.world/@NyankoBfLmao",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/9-fix2.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Launched game and activated two characters by dragging sound icons.",
+    "controls": "Drag-and-drop verified.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 layout and pointer drag verified. Physical touchscreen not tested.",
+    "primaryEvidence": "https://www.cocrea.world/@NyankoBfLmao/INCREDIBOXSprunkiOfficialFinalUpdate",
+    "loaderSHA256": "76f23351e6860b160fc9f8b99f721c5714bfd9edceb8e09dbd368c63e83cbfb5",
+    "localLoader": "/game-builds/9.html",
+    "localCover": "/game-covers/9.png",
+    "note": "Drag a sound onto a character to build your mix.",
+    "launchUrl": "https://afterhours-games.onrender.com/9.html?v=20261028",
+    "sourceDependencies": [
       "src=\"https://www.googletagmanager.com/gtag/js?id=G-L7856P3VNT\"",
       "href=\"https://cdn.jsdelivr.net/gh/bubblfan/sprunki/\"",
       "src=\"script.js\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://www.googletagmanager.com/gtag/js?id=G-L7856P3VNT",
       "https://cdn.jsdelivr.net/gh/bubblfan/sprunki/",
       "https://cdn.jsdelivr.net/gh/bubblfan/sprunki/assets/",
       "https://cdn.jsdelivr.net/gh/bubblfan/sprunki/assets/project.json"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "Original creator Cocrea project is private. No authorization to rehost this mirror was found.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://www.cocrea.world/@NyankoBfLmao/INCREDIBOXSprunkiOfficialFinalUpdate"
+    "externalDependencies": [],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   },
   {
     "id": 11,
@@ -382,25 +432,34 @@
     "author": "Madbox",
     "authorLink": "https://madbox.io",
     "loader": "https://raw.githubusercontent.com/gn-math/html/main/11-fix2.html",
-    "dependencies": [
+    "status": "verified",
+    "playable": true,
+    "permission": "User states permission to use this build, October 28, 2026.",
+    "gameplay": "Completed level 1, official ad played, then level 2 began.",
+    "controls": "Pointer hold/release swing verified.",
+    "fullscreen": "Embedded player loading and fullscreen enter/exit verified locally.",
+    "mobile": "390\u00d7844 gameplay and pointer hold verified. Provider account banner can exceed phone width. Physical touchscreen not tested.",
+    "primaryEvidence": "https://www.madbox.io/games/",
+    "loaderSHA256": "eba2cbb391e86381c136a1e087b83f00d456da2d31255b229977b45691dafdef",
+    "localLoader": "/game-builds/11.html",
+    "localCover": "/game-covers/11.png",
+    "note": "Click or tap and hold to swing; release to let go.",
+    "launchUrl": "https://afterhours-games.onrender.com/11.html?v=20261028",
+    "sourceDependencies": [
       "src=\"https://www.googletagmanager.com/gtag/js?id=G-L7856P3VNT\"",
       "href=\"https://cdn.jsdelivr.net/gh/taskmaster773/google-class@cd06df26d3c4d9f73c8151fc13f7b2dc27f3adda/stickman-hook/\"",
       "src=\"poki3.js\"",
       "src=\"bundle.js\"",
       "src=\"https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015\""
     ],
-    "externalUrls": [
+    "sourceExternalUrls": [
       "https://www.googletagmanager.com/gtag/js?id=G-L7856P3VNT",
       "https://cdn.jsdelivr.net/gh/taskmaster773/google-class@cd06df26d3c4d9f73c8151fc13f7b2dc27f3adda/stickman-hook/",
       "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
     ],
-    "status": "permission-unverified",
-    "playable": false,
-    "permission": "No license in the GN HTML, assets or cover repository; publisher hosting permission not verified.",
-    "gameplay": "Not tested: permission unresolved.",
-    "controls": "Not tested",
-    "fullscreen": "Not tested",
-    "mobile": "Not tested",
-    "primaryEvidence": "https://www.madbox.io/games/"
+    "externalDependencies": [
+      "Official Poki SDK and advertising services"
+    ],
+    "testScope": "Desktop keyboard/pointer gameplay on the same standalone build; embedding/fullscreen tested in site shell. Phone viewport uses pointer emulation, not a physical touchscreen. Audio was not audibly verified."
   }
 ]

@@ -203,3 +203,29 @@ a:focus-visible {
 		height: calc(100dvh - 135px);
 	}
 }
+
+.header-actions {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+#spotify-login {
+	border: 1px solid #34422a;
+	border-radius: 6px;
+	background: #1c2416;
+	color: #c3ef73;
+	font-size: 11px;
+	padding: 9px 12px;
+}
+#spotify-login[hidden] {
+	display: none;
+}
+@media (max-width: 600px) {
+	.header-actions {
+		gap: 6px;
+	}
+	#spotify-login {
+		font-size: 10px;
+		padding: 8px;
+	}
+}

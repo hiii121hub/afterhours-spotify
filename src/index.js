@@ -66,6 +66,13 @@ const fastify = Fastify({
 });
 
 fastify.get("/health", async () => ({ status: "ok" }));
+// Execute game builds only on the dedicated game origin, never beside Spotify storage.
+fastify.get("/game-builds/*", async (_request, reply) =>
+	reply
+		.code(403)
+		.type("text/plain")
+		.send("Game builds run on the separate game host.")
+);
 // Without a controlling service worker, proxy URLs cannot load on their own.
 fastify.get("/scramjet/*", async (_request, reply) =>
 	reply.redirect("/?service=spotify")

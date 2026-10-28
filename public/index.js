@@ -11,11 +11,11 @@ const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 const services = {
 	spotify: {
 		url: "https://open.spotify.com/",
-		note: "Spotify’s web player. Sign in with your Spotify account.",
+		note: "Use Spotify email sign-in. Google sign-in is blocked in this embedded browser.",
 	},
 	games: {
 		url: "/games.html",
-		note: "Game hosting permissions and test status.",
+		note: "Games play inside this page.",
 	},
 	videos: {
 		url: "/watch.html",
@@ -48,6 +48,7 @@ async function init() {
 async function show(service) {
 	if (!services[service]) return;
 	active = service;
+	document.querySelector("#spotify-login").hidden = service !== "spotify";
 	document
 		.querySelectorAll("[data-service]")
 		.forEach((b) =>
@@ -113,3 +114,14 @@ document.querySelector("#reload").onclick = () => {
 if (new URLSearchParams(location.search).get("service") === "spotify") {
 	document.querySelector("#start").click();
 }
+
+document.querySelector("#spotify-login").onclick = async () => {
+	started = true;
+	await show("spotify");
+	const player = frames.get("spotify");
+	if (player)
+		player.go(
+			"https://accounts.spotify.com/en/login?continue=" +
+				encodeURIComponent("https://open.spotify.com/")
+		);
+};

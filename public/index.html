@@ -18,11 +18,14 @@
 				><button data-service="games">Games</button
 				><button data-service="videos">Videos</button>
 			</nav>
-			<button id="reload" aria-label="Reload service">↻</button>
+			<div class="header-actions">
+				<button id="spotify-login">Spotify email sign-in</button
+				><button id="reload" aria-label="Reload service">↻</button>
+			</div>
 		</header>
 		<div class="notice">
 			<span id="service-note"
-				>Spotify’s web player. Sign in with your Spotify account.</span
+				>Use Spotify email sign-in. Google sign-in is blocked here.</span
 			><a href="/source.tar.gz" download>Source</a
 			><button class="text-button" data-service="credits">Credits</button>
 		</div>
@@ -31,8 +34,8 @@
 				<span class="tag">WEB PLAYER</span>
 				<h1>Spotify, in the page.</h1>
 				<p>
-					Loads Spotify’s own web player through Scramjet.<br />A Spotify
-					account is still required to play full songs.
+					Use your Spotify email to sign in.<br />Google sign-in does not work
+					in this embedded browser.
 				</p>
 				<button id="start">Load Spotify</button>
 				<p id="status" role="status"></p>

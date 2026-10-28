@@ -165,3 +165,41 @@ a:focus-visible {
 		height: calc(100dvh - 114px);
 	}
 }
+
+.notice .text-button {
+	background: transparent;
+	color: #c0ceb1;
+	font-size: 10px;
+	padding: 0;
+}
+.notice {
+	flex-wrap: wrap;
+}
+#service-note {
+	flex: 1;
+	min-width: 160px;
+}
+@media (max-width: 600px) {
+	header {
+		flex-wrap: wrap;
+		height: auto;
+		min-height: 70px;
+		padding-top: 12px;
+		padding-bottom: 12px;
+	}
+	nav button {
+		padding: 9px 10px;
+	}
+	header .brand {
+		font-size: 18px;
+	}
+	.notice {
+		font-size: 10px;
+	}
+	.notice #service-note {
+		min-width: 100px;
+	}
+	#stage > iframe {
+		height: calc(100dvh - 135px);
+	}
+}

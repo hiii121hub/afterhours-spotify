@@ -1,0 +1,158 @@
+:root {
+	color-scheme: dark;
+	font:
+		14px Arial,
+		sans-serif;
+	background: #101210;
+	color: #f0f2e9;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+}
+main {
+	max-width: 1200px;
+	padding: 38px 24px 70px;
+	margin: auto;
+}
+h1 {
+	font-size: clamp(32px, 5vw, 48px);
+	letter-spacing: -1.5px;
+	font-weight: 500;
+	margin: 12px 0;
+}
+h2 {
+	font-size: 22px;
+	font-weight: 500;
+	margin: 14px 0 10px;
+}
+.eyebrow {
+	font-size: 10px;
+	letter-spacing: 2px;
+	color: #c3ef73;
+}
+.intro {
+	max-width: 650px;
+	line-height: 1.7;
+	color: #aeb6a6;
+	margin-bottom: 30px;
+}
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+}
+.card,
+.video-card {
+	border: 1px solid #34422a;
+	background: #192016;
+	border-radius: 12px;
+	padding: 24px;
+}
+.card p {
+	color: #aeb6a6;
+	font-size: 12px;
+	line-height: 1.6;
+	overflow-wrap: anywhere;
+}
+.number {
+	font-size: 36px;
+	color: #6d8457;
+	font-variant-numeric: tabular-nums;
+}
+.status {
+	display: inline-block;
+	border: 1px solid #596341;
+	border-radius: 20px;
+	font-size: 10px;
+	padding: 7px 10px;
+	color: #ddc88b;
+}
+.card details {
+	margin-top: 22px;
+	font-size: 12px;
+}
+summary {
+	cursor: pointer;
+	color: #c3ef73;
+}
+main > details {
+	margin-top: 30px;
+	line-height: 1.8;
+}
+a {
+	color: #c3ef73;
+}
+button {
+	border: 0;
+	border-radius: 6px;
+	background: #c3ef73;
+	color: #1b2612;
+	padding: 12px 20px;
+	font: 600 12px Arial;
+	cursor: pointer;
+}
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible {
+	outline: 2px solid #c3ef73;
+	outline-offset: 4px;
+}
+.video-heading {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	align-items: center;
+}
+.video-stage {
+	aspect-ratio: 16/9;
+	background: #090b09;
+	display: grid;
+	place-items: center;
+	border-radius: 8px;
+	overflow: hidden;
+	margin-top: 22px;
+}
+.video-stage iframe {
+	height: 100%;
+	width: 100%;
+	border: 0;
+}
+.video-stage p,
+.muted,
+#video-status {
+	font-size: 12px;
+	color: #abb89f;
+	line-height: 1.7;
+}
+.video-stage p {
+	padding: 20px;
+}
+@media (max-width: 800px) {
+	.grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+@media (max-width: 480px) {
+	main {
+		padding: 25px 16px;
+	}
+	.grid {
+		grid-template-columns: 1fr;
+	}
+	.video-card {
+		padding: 16px;
+	}
+	.video-heading {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+	.video-heading h2 {
+		margin-bottom: 0;
+	}
+	.video-stage {
+		aspect-ratio: 4/3;
+	}
+}

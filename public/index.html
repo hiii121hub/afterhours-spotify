@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<title>Afterhours — Spotify</title>
+		<title>Afterhours</title>
 		<link rel="stylesheet" href="index.css" />
 		<script src="/scram/scramjet.all.js"></script>
 		<script src="/baremux/index.js"></script>
@@ -15,19 +15,16 @@
 			<a class="brand" href="/">afterhours<span>.</span></a>
 			<nav aria-label="Services">
 				<button data-service="spotify" class="active">Spotify</button
-				><button data-service="crunchyroll">Crunchyroll</button>
+				><button data-service="games">Games</button
+				><button data-service="videos">Videos</button>
 			</nav>
 			<button id="reload" aria-label="Reload service">↻</button>
 		</header>
 		<div class="notice">
 			<span id="service-note"
 				>Spotify’s web player. Sign in with your Spotify account.</span
-			><a
-				href="https://github.com/hiii121hub/afterhours-spotify"
-				target="_blank"
-				rel="noopener"
-				>Source</a
-			><a href="credits.html" target="_blank" rel="noopener">Credits</a>
+			><a href="/source.tar.gz" download>Source</a
+			><button class="text-button" data-service="credits">Credits</button>
 		</div>
 		<main id="stage">
 			<div class="start">

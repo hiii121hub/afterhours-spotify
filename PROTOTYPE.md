@@ -11,3 +11,9 @@ Spotify accounts, ads, DRM, subscription and browser restrictions still apply. T
 The existing Crunchyroll show/trailer section is retained pending clarification, and is unrelated to the Spotify transport. Games are deferred at the user's request. Upstream source is in README.md and LICENSE; the UI provides Source and Credits links.
 
 Public test deployment: https://afterhours-spotify.onrender.com. Render free web service, Node 22, npm ci --ignore-scripts, npm start. A free service can sleep when idle and has capacity and bandwidth limits; no unlimited availability is promised. Tests include hostname/IP filtering and actual HTTP/WebSocket rejection of foreign origins and forbidden targets.
+
+## Games and videos update
+
+Seven GN game entries were matched to loaders, covers and third-party dependencies. No redistribution/embedding permission was verified; none is marked playable and no mirrored game files or cover artwork were copied. See reports/GAMES.md and reports/game-audit.json. Original Sprunki creator projects are private; Onionfist requires written approval for external use. Games' gameplay, controls, fullscreen and mobile compatibility remain untested.
+
+Videos now use a local page with an official Crunchyroll YouTube trailer embed. Removed external episode/search/show links and YouTube fallback links. Child frames omit popup/top-navigation sandbox permissions; provider UI remains intact. Video uses a credentialless iframe to coexist with the Spotify proxy's cross-origin isolation. Local browser test observed the trailer reach 56 seconds and enter/exit fullscreen. Full Crunchyroll episodes are not offered. Spotify authentication 403 remains unresolved; no account/playback success is claimed.

@@ -13,10 +13,15 @@ const services = {
 		url: "https://open.spotify.com/",
 		note: "Spotify’s web player. Sign in with your Spotify account.",
 	},
-	crunchyroll: {
-		url: "/watch.html",
-		note: "Crunchyroll shows and official trailers. Full episodes open on Crunchyroll.",
+	games: {
+		url: "/games.html",
+		note: "Game hosting permissions and test status.",
 	},
+	videos: {
+		url: "/watch.html",
+		note: "Videos play here. No external fallback.",
+	},
+	credits: { url: "/credits.html", note: "Credits and licenses." },
 };
 const frames = new Map();
 let active = "spotify",
@@ -49,9 +54,10 @@ async function show(service) {
 			b.classList.toggle("active", b.dataset.service === service)
 		);
 	document.querySelector("#service-note").textContent = services[service].note;
-	if (!started) return;
+	if (!started && service === "spotify") return;
+	started = true;
 	try {
-		await init();
+		if (service === "spotify") await init();
 		let frame = frames.get(service);
 		if (!frame) {
 			if (service === "spotify") {
@@ -66,9 +72,12 @@ async function show(service) {
 				};
 			}
 			frame.frame.title =
-				service === "spotify"
-					? "Spotify web player"
-					: "Crunchyroll shows and trailers";
+				service === "spotify" ? "Spotify web player" : services[service].note;
+			frame.frame.setAttribute(
+				"sandbox",
+				"allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-presentation"
+			);
+			frame.frame.allowFullscreen = true;
 			frame.frame.allow =
 				"autoplay; encrypted-media; fullscreen; picture-in-picture";
 			document.querySelector("#stage").append(frame.frame);

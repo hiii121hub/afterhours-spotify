@@ -1,6 +1,18 @@
-'use strict';
-const $=s=>document.querySelector(s);
-const shows=[{title:'JUJUTSU KAISEN',genre:'Action / Supernatural',url:'https://www.crunchyroll.com/series/GRDV0019R/jujutsu-kaisen',bg:'linear-gradient(135deg,#3d3547,#75505e)',art:'JUJUTSU<br>KAISEN'},{title:'Frieren: Beyond Journey’s End',genre:'Adventure / Fantasy',url:'https://www.crunchyroll.com/search?q=Frieren',bg:'linear-gradient(135deg,#304d41,#8a9b77)',art:'Beyond<br>the journey.'},{title:'One Piece',genre:'Adventure / Action',url:'https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece',bg:'linear-gradient(135deg,#344f65,#7398a2)',art:'ONE<br>PIECE'},{title:'Demon Slayer',genre:'Action / Fantasy',url:'https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba',bg:'linear-gradient(135deg,#4d4233,#9b785a)',art:'DEMON<br>SLAYER'}];$('#show-grid').innerHTML=shows.map(s=>`<a class="show-card" href="${s.url}" target="_blank" rel="noopener"><div class="show-art" style="background:${s.bg}"><span>${s.art}</span></div><div class="show-caption"><h3>${s.title} ↗</h3><p>${s.genre}</p></div></a>`).join('');
-$('#crunchy-form').onsubmit=e=>{e.preventDefault();window.open(`https://www.crunchyroll.com/search?q=${encodeURIComponent($('#anime-search').value.trim())}`,'_blank','noopener')};
-$('#trailer-button').onclick=()=>{$('#trailer-player').innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/YvGSK8mIlt8" title="Solo Leveling official trailer by Crunchyroll" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';$('#trailer-dialog').showModal()};$('#close-trailer').onclick=()=>$('#trailer-dialog').close();$('#trailer-dialog').addEventListener('close',()=>$('#trailer-player').replaceChildren());
-for(const dialog of document.querySelectorAll('dialog'))dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+"use strict";
+document.querySelector("#play").onclick = () => {
+	const iframe = document.createElement("iframe");
+	iframe.src =
+		"https://www.youtube-nocookie.com/embed/YvGSK8mIlt8?playsinline=1";
+	iframe.title = "Solo Leveling official trailer by Crunchyroll";
+	iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+	iframe.allowFullscreen = true;
+	iframe.credentialless = true;
+	iframe.setAttribute(
+		"sandbox",
+		"allow-scripts allow-same-origin allow-presentation"
+	);
+	iframe.referrerPolicy = "strict-origin-when-cross-origin";
+	document.querySelector("#player").replaceChildren(iframe);
+	document.querySelector("#video-status").textContent =
+		"Player loaded. Playback depends on the video provider.";
+};

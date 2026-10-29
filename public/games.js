@@ -3,6 +3,9 @@ const grid = document.querySelector("#games"),
 	dialog = document.querySelector("#game-dialog"),
 	shell = document.querySelector("#game-shell");
 let current, frame, returnFocus;
+document
+	.querySelector("#catalog-reload")
+	?.addEventListener("click", () => location.reload());
 const controls = {
 	1: "Arrow keys: move, jump and crouch.",
 	2: "Arrow keys: move, jump and crouch.",
@@ -19,7 +22,7 @@ function mount() {
 	frame.title = current.name + " game";
 	frame.allow = "autoplay; fullscreen; gamepad";
 	frame.allowFullscreen = true;
-	frame.credentialless = true;
+	frame.credentialless = window.crossOriginIsolated === true;
 	// A distinct game origin keeps scripts separate from Spotify account storage.
 	frame.setAttribute(
 		"sandbox",

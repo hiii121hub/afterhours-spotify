@@ -1,13 +1,24 @@
 "use strict";
-const { ScramjetController } = $scramjetLoadController();
-const scramjet = new ScramjetController({
-	files: {
-		wasm: "/scram/scramjet.wasm.wasm",
-		all: "/scram/scramjet.all.js",
-		sync: "/scram/scramjet.sync.js",
-	},
-});
-const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
+let scramjet, connection;
+const playerScripts = new Map();
+function loadPlayerScript(src) {
+	if (playerScripts.has(src)) return playerScripts.get(src);
+	const pending = new Promise((resolve, reject) => {
+		const script = document.createElement("script");
+		script.src = src;
+		script.onload = resolve;
+		script.onerror = () => {
+			script.remove();
+			playerScripts.delete(src);
+			reject(
+				new Error("The Spotify player files could not load. Please retry.")
+			);
+		};
+		document.head.append(script);
+	});
+	playerScripts.set(src, pending);
+	return pending;
+}
 const services = {
 	spotify: {
 		url: "https://open.spotify.com/",
@@ -25,6 +36,26 @@ let active = "spotify",
 async function init() {
 	if (initializing) return initializing;
 	initializing = (async () => {
+		await Promise.all([
+			typeof window.$scramjetLoadController === "function"
+				? undefined
+				: loadPlayerScript("/scram/scramjet.all.js"),
+			typeof window.BareMux?.BareMuxConnection === "function"
+				? undefined
+				: loadPlayerScript("/baremux/index.js"),
+		]);
+		if (!scramjet) {
+			const { ScramjetController } = window.$scramjetLoadController();
+			scramjet = new ScramjetController({
+				files: {
+					wasm: "/scram/scramjet.wasm.wasm",
+					all: "/scram/scramjet.all.js",
+					sync: "/scram/scramjet.sync.js",
+				},
+			});
+		}
+		if (!connection)
+			connection = new window.BareMux.BareMuxConnection("/baremux/worker.js");
 		await scramjet.init();
 		await registerSW();
 		await navigator.serviceWorker.ready;
@@ -45,6 +76,10 @@ async function init() {
 }
 async function show(service) {
 	if (!services[service]) return;
+	if (service === "games") {
+		location.assign("/games");
+		return;
+	}
 	active = service;
 	document.querySelector("#spotify-login").hidden = service !== "spotify";
 	document
@@ -71,7 +106,7 @@ async function show(service) {
 				};
 			}
 			frame.frame.title =
-				service === "spotify" ? "Spotify web player" : services[service].note;
+				service === "spotify" ? "Spotify web player" : "Games";
 			frame.frame.setAttribute(
 				"sandbox",
 				"allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-presentation"

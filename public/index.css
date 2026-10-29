@@ -43,14 +43,16 @@ nav {
 	gap: 24px;
 	align-self: stretch;
 }
-nav button {
+nav button,
+nav a {
 	background: none;
 	border-radius: 0;
 	padding: 20px 0;
 	font-size: 14px;
 	color: #929292;
 }
-nav button.active {
+nav button.active,
+nav a.active {
 	color: #fff;
 	box-shadow: inset 0 -2px #fff;
 }
@@ -160,4 +162,23 @@ a:focus-visible {
 	.start h1 {
 		font-size: 34px;
 	}
+}
+
+nav a {
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+}
+#catalog-reload {
+	background: none;
+	border: 1px solid #3a3a3a;
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	font-size: 24px;
+}
+.games-page #stage {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }

@@ -36,3 +36,10 @@ Game wrappers restore real provider SDKs, preserve ad callbacks, repair actual a
 Removed the Videos UI and files, Credits page/button, site branding and game test badges/report links from the public interface. Source/license notices remain in the source distribution. Spotify reload now rebuilds the wrapper/transport connection after a deploy or suspended tab, initialization failures can retry, and startup waits until a service worker actually controls the page.
 
 A fresh live tab loads the Spotify catalog. The user's email login attempt returned Spotify's own error after submission; all provider buttons were reported failing. Google explicitly rejects OAuth through an embedded proxy. These changes do not claim to fix provider authentication or full-song playback. A supported embedded preview player or normal-browser Spotify flow requires a user choice; no security checks are bypassed.
+
+
+## Games blank-screen repair
+
+Games now open at /games on the same site, outside the Spotify wrapper. That trusted catalog route retains COOP and nosniff but does not request Spotify's COEP/SAB environment. Games continue to execute only in sandboxed iframes on the separate game host; /game-builds/* remains denied on the account origin. The Spotify route and transport keep their original isolation and destination checks. This avoids relying on experimental credentialless iframe support for Games.
+
+Spotify scripts and SharedWorker construction are deferred until Spotify is requested. A regression check opens Games with both dependencies missing. Nine checks and ESLint pass. Public entry URLs for all seven games return 200; OvO, OvO 2, Gladihoppers and Stickman Hook reached menus/tutorials in the live site during this investigation. Poki's SDK reported an unapproved-domain warning for Gladihoppers despite displaying the tutorial; no SDK checks or ads were bypassed.

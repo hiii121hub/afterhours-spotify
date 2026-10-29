@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { fileURLToPath } from "url";
+import { readFile } from "node:fs/promises";
 import {
 	allowedHosts,
 	resolveDestination,
@@ -38,7 +39,11 @@ const fastify = Fastify({
 		return createServer()
 			.on("request", (req, res) => {
 				res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
-				res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+				// Spotify requires cross-origin isolation. The trusted Games page does
+				// not; game code still runs in a sandbox on the separate game origin.
+				if (req.url?.split("?")[0] !== "/games") {
+					res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+				}
 				res.setHeader("X-Content-Type-Options", "nosniff");
 				res.setHeader("Referrer-Policy", "same-origin");
 				handler(req, res);
@@ -66,6 +71,23 @@ const fastify = Fastify({
 });
 
 fastify.get("/health", async () => ({ status: "ok" }));
+fastify.get("/games", async (_request, reply) => {
+	const catalog = await readFile(
+		new URL("../public/games.html", import.meta.url),
+		"utf8"
+	);
+	const page = catalog
+		.replace(
+			'<link rel="stylesheet" href="media.css" />',
+			'<link rel="stylesheet" href="/index.css" /><link rel="stylesheet" href="/media.css" />'
+		)
+		.replace(
+			"<body>",
+			`<body class="games-page"><header><nav aria-label="Services"><a href="/">Spotify</a><a class="active" aria-current="page" href="/games">Games</a></nav><button id="catalog-reload" aria-label="Reload games">↻</button></header><div class="notice"><a href="/source.tar.gz" download>Source</a></div>`
+		)
+		.replace("<main>", '<main id="stage">');
+	return reply.header("Cache-Control", "no-store").type("text/html").send(page);
+});
 // Execute game builds only on the dedicated game origin, never beside Spotify storage.
 fastify.get("/game-builds/*", async (_request, reply) =>
 	reply

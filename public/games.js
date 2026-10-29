@@ -27,8 +27,7 @@ function mount() {
 	);
 	frame.addEventListener("load", () => {
 		frame.focus();
-		document.querySelector("#game-message").textContent =
-			current.note || controls[current.id];
+		document.querySelector("#game-message").textContent = "";
 	});
 	document.querySelector("#game-frame").replaceChildren(frame);
 	document.querySelector("#game-message").textContent =
@@ -79,29 +78,15 @@ fetch("/game-audit.json")
 			copy.className = "game-card-copy";
 			const title = document.createElement("h2");
 			title.textContent = game.name;
-			const author = document.createElement("p");
-			author.textContent = game.author;
-			const status = document.createElement("span");
-			status.className = "status";
-			status.textContent = game.playable
-				? "Gameplay tested"
-				: game.status === "broken"
-					? "Unavailable"
-					: "Testing";
-			const note = document.createElement("p");
-			note.textContent = game.note || controls[game.id];
 			const button = document.createElement("button");
-			button.textContent = game.playable ? "Play" : "Open";
-			button.setAttribute(
-				"aria-label",
-				(game.playable ? "Play " : "Open ") + game.name
-			);
+			button.textContent = "Play";
+			button.setAttribute("aria-label", "Play " + game.name);
 			if (game.status === "broken" || game.status === "sdk-review") {
 				button.disabled = true;
 				button.textContent = "Unavailable";
 			}
 			button.onclick = () => openGame(game, button);
-			copy.append(title, author, status, note, button);
+			copy.append(title, button);
 			card.append(image, copy);
 			grid.append(card);
 		}

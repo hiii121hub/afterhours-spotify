@@ -282,3 +282,7 @@ button:disabled {
 		aspect-ratio: 16/9;
 	}
 }
+
+#game-message:empty {
+	display: none;
+}

@@ -29,3 +29,10 @@ Local browser checks with the sandbox retained: catalog loaded, Daft Punk search
 The header opens Spotify's email sign-in inside the existing player. Google rejects embedded/proxied authentication and has not been bypassed. A Google-created Spotify account can use Spotify's supported email/password flow after the account owner sets a Spotify password. No account credentials are included in this project. Full authenticated playback still requires a consenting signed-in user and remains unverified.
 
 Game wrappers restore real provider SDKs, preserve ad callbacks, repair actual asset loading and player rendering, and add on-screen controls for keyboard-only local builds. Ice Dodo uses the current official creator embed. Main COOP/COEP and transport access restrictions remain enabled. Seven Node checks and ESLint pass. Browser test scope and external dependencies are recorded in reports/GAMES.md.
+
+
+## Interface cleanup and login limitations — October 28
+
+Removed the Videos UI and files, Credits page/button, site branding and game test badges/report links from the public interface. Source/license notices remain in the source distribution. Spotify reload now rebuilds the wrapper/transport connection after a deploy or suspended tab, initialization failures can retry, and startup waits until a service worker actually controls the page.
+
+A fresh live tab loads the Spotify catalog. The user's email login attempt returned Spotify's own error after submission; all provider buttons were reported failing. Google explicitly rejects OAuth through an embedded proxy. These changes do not claim to fix provider authentication or full-song playback. A supported embedded preview player or normal-browser Spotify flow requires a user choice; no security checks are bypassed.

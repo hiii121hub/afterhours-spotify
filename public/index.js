@@ -11,17 +11,12 @@ const connection = new BareMux.BareMuxConnection("/baremux/worker.js");
 const services = {
 	spotify: {
 		url: "https://open.spotify.com/",
-		note: "Use Spotify email sign-in. Google sign-in is blocked in this embedded browser.",
+		note: "",
 	},
 	games: {
 		url: "/games.html",
-		note: "Games play inside this page.",
+		note: "",
 	},
-	videos: {
-		url: "/watch.html",
-		note: "Videos play here. No external fallback.",
-	},
-	credits: { url: "/credits.html", note: "Credits and licenses." },
 };
 const frames = new Map();
 let active = "spotify",
@@ -42,7 +37,10 @@ async function init() {
 					"/wisp/",
 			},
 		]);
-	})();
+	})().catch((error) => {
+		initializing = undefined;
+		throw error;
+	});
 	return initializing;
 }
 async function show(service) {
@@ -102,6 +100,11 @@ document
 	.querySelectorAll("[data-service]")
 	.forEach((b) => (b.onclick = () => show(b.dataset.service)));
 document.querySelector("#reload").onclick = () => {
+	if (active === "spotify") {
+		// Reconnect the transport after a server deploy or suspended browser tab.
+		location.assign("/?service=spotify");
+		return;
+	}
 	const f = frames.get(active);
 	if (f) f.go(services[active].url);
 	else {

@@ -22,4 +22,29 @@ async function registerSW() {
 	}
 
 	await navigator.serviceWorker.register(stockSW, { updateViaCache: "none" });
+	await navigator.serviceWorker.ready;
+	if (!navigator.serviceWorker.controller) {
+		await new Promise((resolve, reject) => {
+			const timeout = setTimeout(() => {
+				navigator.serviceWorker.removeEventListener(
+					"controllerchange",
+					controlled
+				);
+				reject(
+					new Error("The player could not initialize. Reload and try again.")
+				);
+			}, 10000);
+			function controlled() {
+				if (!navigator.serviceWorker.controller) return;
+				clearTimeout(timeout);
+				navigator.serviceWorker.removeEventListener(
+					"controllerchange",
+					controlled
+				);
+				resolve();
+			}
+			navigator.serviceWorker.addEventListener("controllerchange", controlled);
+			controlled();
+		});
+	}
 }

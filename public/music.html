@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="icon" href="data:,">
+<title>Music</title>
+<link rel="stylesheet" href="{{base}}index.css">
+<link rel="stylesheet" href="{{base}}music.css">
+<script type="module" src="{{base}}music.js"></script>
+</head>
+<body>
+{{navigation}}
+<main id="stage">
+<section class="music-page">
+<h1>Music</h1>
+<p class="intro">Songs and videos from YouTube.</p>
+<form id="music-form" novalidate>
+<label for="music-link">YouTube or YouTube Music link</label>
+<div class="music-input"><input id="music-link" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste a song or video link" aria-describedby="music-status"><button type="submit">Add to queue</button></div>
+</form>
+<p id="music-status" role="status" aria-live="polite"></p>
+<div class="music-layout">
+<div class="player-column">
+<div id="video-host"></div>
+<div class="transport"><button id="previous" disabled>Previous</button><button id="next" disabled>Next</button><span>YouTube</span></div>
+<p class="note">Some videos cannot play here because of uploader, region or sign-in restrictions. Ads may appear.</p>
+</div>
+<aside aria-label="Queue"><div class="queue-heading"><h2>Queue</h2><span id="queue-count"></span></div><ol id="queue"></ol></aside>
+</div>
+</section>
+</main>
+</body>
+</html>

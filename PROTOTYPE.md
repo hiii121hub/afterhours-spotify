@@ -61,3 +61,10 @@ Local Pages-path browser test: OvO 2 movement/jump responds. Published-domain ga
 The Spotify tab now uses Spotify's official open.spotify.com/embed player. Visitors can load track, album, artist, playlist, show and episode links or Spotify URIs. Only validated HTTPS open.spotify.com links and 22-character Spotify IDs are accepted; query strings and unrelated destinations are discarded. Playback stays in a restrictive iframe with no top navigation or popup permission. No proxy, credentials, Web API keys or account storage is involved. Spotify controls availability; signed-out/free listening may be limited to previews. Site account login and unrestricted full-track streaming are not provided.
 
 Local browser verification: a real Blinding Lights preview advanced to 12 seconds, Pause responded, an invalid URL left the existing player intact with a validation message, Random Access Memories loaded all 13 tracks, and the player/form fit a 390px mobile viewport.
+
+
+## YouTube music page
+
+Added music.html to GitHub Pages navigation. This page uses the official visible YouTube iframe and IFrame Player API, accepts validated HTTPS YouTube/YouTube Music video URLs, and provides an in-memory queue, previous/next, selection and removal. The iframe sandbox disallows popups/top-level navigation; provider ads and restrictions remain intact. Hidden-page playback is paused. No audio extraction, proxy, login, API key or alternative publisher is involved. Playlist-only links are rejected with a clear message.
+
+Local browser: YouTube's official API demo played, and NCS's official On & On upload played past 36 seconds with a 3:27 duration; pause responded, queue switching worked, invalid URLs retained the current video, and the page fit a 390px viewport. Rick Astley and Daft Punk uploads returned embedding restrictions in this browser; they are not used as the default. Availability is controlled by YouTube.

@@ -1,0 +1,30 @@
+.music-page { max-width: 1200px; margin: 3vh auto; padding: 24px; }
+.music-page h1 { margin: 0 0 10px; font-size: 40px; letter-spacing: -1.5px; }
+.music-page .intro { margin: 0 0 26px; color: #aaa; font-size: 14px; }
+#music-form label { display: block; font-size: 12px; margin-bottom: 9px; color: #bbb; }
+.music-input { display: flex; gap: 10px; }
+#music-link { flex: 1; min-width: 0; background: #1c1c1c; border: 1px solid #444; border-radius: 8px; padding: 14px; color: #fff; font: inherit; font-size: 14px; }
+#music-link:focus-visible { outline: 2px solid #ddd; outline-offset: 2px; }
+.music-input button { background: #eee; color: #111; border-radius: 8px; padding: 12px 20px; font-size: 13px; font-weight: 600; }
+#music-status { min-height: 20px; margin: 9px 0 20px; color: #bbb; font-size: 12px; line-height: 1.5; }
+.music-layout { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 24px; align-items: start; }
+#video-host { background: #000; border: 1px solid #333; border-radius: 10px; overflow: hidden; }
+#video-host iframe { display: block; width: 100%; aspect-ratio: 16/9; min-height: 200px; border: 0; }
+.transport { display: flex; gap: 8px; align-items: center; margin: 14px 0; }
+.transport button { padding: 10px 14px; border: 1px solid #444; background: #242424; border-radius: 6px; font-size: 12px; }
+.transport button:disabled { opacity: .4; cursor: default; }
+.transport span { margin-left: auto; font-size: 12px; color: #aaa; }
+.note { font-size: 12px; color: #888; line-height: 1.6; }
+aside { border: 1px solid #333; border-radius: 10px; background: #181818; overflow: hidden; }
+.queue-heading { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid #333; }
+.queue-heading h2 { margin: 0; font-size: 14px; }
+#queue-count { color: #888; font-size: 12px; }
+#queue { margin: 0; padding: 0; list-style: none; max-height: 450px; overflow: auto; }
+#queue li { display: flex; border-bottom: 1px solid #2b2b2b; }
+#queue li:last-child { border: 0; }
+#queue button { background: transparent; text-align: left; padding: 16px 12px; font-size: 13px; line-height: 1.4; }
+#queue .queue-play { flex: 1; overflow-wrap: anywhere; }
+#queue .queue-play[aria-current="true"] { color: #fff; background: #303030; box-shadow: inset 3px 0 #eee; }
+#queue .queue-remove { color: #999; font-size: 18px; }
+@media(max-width: 800px) { .music-layout { grid-template-columns: 1fr; gap: 20px; } #queue { max-height: 280px; } }
+@media(max-width: 480px) { .music-page { margin: 12px auto; padding: 20px 16px; } .music-page h1 { font-size: 32px; } .music-input button { padding: 12px; } }

@@ -35,7 +35,7 @@ for (const game of games) {
 		/["']\/(ovo2|ovo3|gladihoppers|sprunki|stickman-hook)\//
 	);
 }
-for (const file of ["index.html", "spotify.html", "games.js"]) {
+for (const file of ["index.html", "spotify.html", "games.js", "music.html", "music.js"]) {
 	const contents = await readFile(path.join(output, file), "utf8");
 	assert.doesNotMatch(contents, /onrender\.com|\/scram\/|\/wisp\//);
 }

@@ -24,6 +24,8 @@ for (const name of [
 	"game-builds",
 	"spotify-pages.js",
 	"spotify-pages.css",
+	"music.js",
+	"music.css",
 ]) {
 	await cp(path.join(root, "public", name), path.join(output, name), {
 		recursive: true,
@@ -74,7 +76,7 @@ gamesScript = gamesScript.replace(
 );
 await writeFile(path.join(output, "games.js"), gamesScript);
 const navigation = (active) =>
-	`<header><nav aria-label="Services"><a href="${base}spotify.html"${active === "spotify" ? ' class="active" aria-current="page"' : ""}>Spotify</a><a href="${base}"${active === "games" ? ' class="active" aria-current="page"' : ""}>Games</a></nav>${active === "games" ? '<button id="catalog-reload" aria-label="Reload games">↻</button>' : ""}</header><div class="notice"><a href="${base}source.tar.gz" download>Source</a></div>`;
+	`<header><nav aria-label="Services"><a href="${base}music.html"${active === "music" ? ' class="active" aria-current="page"' : ""}>Music</a><a href="${base}spotify.html"${active === "spotify" ? ' class="active" aria-current="page"' : ""}>Spotify</a><a href="${base}"${active === "games" ? ' class="active" aria-current="page"' : ""}>Games</a></nav>${active === "games" ? '<button id="catalog-reload" aria-label="Reload games">↻</button>' : ""}</header><div class="notice"><a href="${base}source.tar.gz" download>Source</a></div>`;
 let html = await readFile(path.join(root, "public/games.html"), "utf8");
 html = html
 	.replace(
@@ -89,6 +91,10 @@ const spotifyPage = (await readFile(path.join(root, "public/spotify-pages.html")
 	.replaceAll("{{base}}", base)
 	.replace("{{navigation}}", navigation("spotify"));
 await writeFile(path.join(output, "spotify.html"), spotifyPage);
+const musicPage = (await readFile(path.join(root, "public/music.html"), "utf8"))
+	.replaceAll("{{base}}", base)
+	.replace("{{navigation}}", navigation("music"));
+await writeFile(path.join(output, "music.html"), musicPage);
 await writeFile(path.join(output, ".nojekyll"), "");
 await writeFile(
 	path.join(output, "404.html"),

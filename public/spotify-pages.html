@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" href="data:,">
+	<title>Spotify</title>
+	<link rel="stylesheet" href="{{base}}index.css">
+	<link rel="stylesheet" href="{{base}}spotify-pages.css">
+	<script type="module" src="{{base}}spotify-pages.js"></script>
+</head>
+<body>
+{{navigation}}
+<main id="stage">
+	<section class="music">
+		<h1>Spotify</h1>
+		<p class="intro">Paste a song, album, artist or playlist link.</p>
+		<form id="spotify-form" novalidate>
+			<label for="spotify-link">Spotify link</label>
+			<div class="link-row">
+				<input id="spotify-link" name="link" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://open.spotify.com/…" aria-describedby="link-error">
+				<button type="submit">Load</button>
+			</div>
+			<p id="link-error" role="alert"></p>
+		</form>
+		<div id="spotify-player"></div>
+		<p class="playback-note">Official Spotify player. Free listening may be limited to previews. This page does not support account sign-in.</p>
+		<div class="examples" aria-label="Try a link">
+			<span>Try</span>
+			<button data-spotify="spotify:track:0VjIjW4GlUZAMYd2vXMi3b">Blinding Lights</button>
+			<button data-spotify="spotify:album:4m2880jivSbbyEGAKfITCa">Random Access Memories</button>
+		</div>
+	</section>
+</main>
+</body>
+</html>

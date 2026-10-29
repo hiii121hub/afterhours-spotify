@@ -41,8 +41,9 @@ for (const file of ["index.html", "spotify.html", "games.js"]) {
 }
 assert.doesNotMatch(
 	await readFile(path.join(output, "spotify.html"), "utf8"),
-	/<input|password|accounts\.spotify\.com/
+	/type=["']password|accounts\.spotify\.com/
 );
+assert.match(await readFile(path.join(output, "spotify-pages.js"), "utf8"), /https:\/\/open\.spotify\.com\/embed\//);
 console.log(
 	"Pages build checked: seven game URLs/covers, project paths, and no Render/proxy dependencies."
 );

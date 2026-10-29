@@ -22,6 +22,8 @@ for (const name of [
 	"game-covers",
 	"source.tar.gz",
 	"game-builds",
+	"spotify-pages.js",
+	"spotify-pages.css",
 ]) {
 	await cp(path.join(root, "public", name), path.join(output, name), {
 		recursive: true,
@@ -83,10 +85,10 @@ html = html
 	.replace("<main>", '<main id="stage">')
 	.replace('src="games.js"', `src="${base}games.js"`);
 await writeFile(path.join(output, "index.html"), html);
-await writeFile(
-	path.join(output, "spotify.html"),
-	`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="data:,"><title>Spotify</title><link rel="stylesheet" href="${base}index.css"></head><body>${navigation("spotify")}<main id="stage"><section class="start"><h1>Spotify</h1><p>Spotify sign-in and full-song playback are unavailable on this site.</p></section></main></body></html>`
-);
+const spotifyPage = (await readFile(path.join(root, "public/spotify-pages.html"), "utf8"))
+	.replaceAll("{{base}}", base)
+	.replace("{{navigation}}", navigation("spotify"));
+await writeFile(path.join(output, "spotify.html"), spotifyPage);
 await writeFile(path.join(output, ".nojekyll"), "");
 await writeFile(
 	path.join(output, "404.html"),

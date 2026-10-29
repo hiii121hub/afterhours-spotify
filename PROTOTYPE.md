@@ -54,3 +54,10 @@ The Pages artifact contains the game catalog, game files/covers, styles and sour
 The static Pages catalog and local game frames share the github.io origin. This build therefore intentionally accepts no account credentials or tokens; it must not be extended with credential storage without restoring a separate game origin. SDK checks and advertisements are unchanged. Ice Dodo remains its official creator embed, and OvO's pinned upstream assets and provider SDK services remain external dependencies.
 
 Local Pages-path browser test: OvO 2 movement/jump responds. Published-domain game checks are recorded in the task artifacts after deployment.
+
+
+## Official Spotify embed on GitHub Pages
+
+The Spotify tab now uses Spotify's official open.spotify.com/embed player. Visitors can load track, album, artist, playlist, show and episode links or Spotify URIs. Only validated HTTPS open.spotify.com links and 22-character Spotify IDs are accepted; query strings and unrelated destinations are discarded. Playback stays in a restrictive iframe with no top navigation or popup permission. No proxy, credentials, Web API keys or account storage is involved. Spotify controls availability; signed-out/free listening may be limited to previews. Site account login and unrestricted full-track streaming are not provided.
+
+Local browser verification: a real Blinding Lights preview advanced to 12 seconds, Pause responded, an invalid URL left the existing player intact with a validation message, Random Access Memories loaded all 13 tracks, and the player/form fit a 390px mobile viewport.

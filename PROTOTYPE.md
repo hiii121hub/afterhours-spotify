@@ -43,3 +43,14 @@ A fresh live tab loads the Spotify catalog. The user's email login attempt retur
 Games now open at /games on the same site, outside the Spotify wrapper. That trusted catalog route retains COOP and nosniff but does not request Spotify's COEP/SAB environment. Games continue to execute only in sandboxed iframes on the separate game host; /game-builds/* remains denied on the account origin. The Spotify route and transport keep their original isolation and destination checks. This avoids relying on experimental credentialless iframe support for Games.
 
 Spotify scripts and SharedWorker construction are deferred until Spotify is requested. A regression check opens Games with both dependencies missing. Nine checks and ESLint pass. Public entry URLs for all seven games return 200; OvO, OvO 2, Gladihoppers and Stickman Hook reached menus/tutorials in the live site during this investigation. Poki's SDK reported an unapproved-domain warning for Gladihoppers despite displaying the tutorial; no SDK checks or ads were bypassed.
+
+
+## GitHub Pages hosting
+
+The requested replacement host is https://hiii121hub.github.io/afterhours-spotify/. GitHub Pages is configured with build_type=workflow. The GitHub Pages workflow builds a static artifact with scripts/build-pages.mjs, checks project-relative game paths with scripts/check-pages.mjs, and deploys through GitHub's official Pages actions. The old Docker Hub publisher workflow is removed.
+
+The Pages artifact contains the game catalog, game files/covers, styles and source archive. Game launch URLs and local runtime asset paths are rebased to /afterhours-spotify/. It contains no Render URLs, proxy/Wisp client, Spotify credential fields or login tokens. GitHub Pages cannot execute the Node/WebSocket proxy; the Spotify tab explicitly states that sign-in and full-song playback are unavailable. The old Node code is retained in source, but is not used by the Pages artifact.
+
+The static Pages catalog and local game frames share the github.io origin. This build therefore intentionally accepts no account credentials or tokens; it must not be extended with credential storage without restoring a separate game origin. SDK checks and advertisements are unchanged. Ice Dodo remains its official creator embed, and OvO's pinned upstream assets and provider SDK services remain external dependencies.
+
+Local Pages-path browser test: OvO 2 movement/jump responds. Published-domain game checks are recorded in the task artifacts after deployment.
